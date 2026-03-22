@@ -1,40 +1,31 @@
 {
-  "version": 2,
-  "builds": [
-    {
-      "src": "index.html",
-      "use": "@vercel/static"
-    }
-  ],
-  "routes": [
-    {
-      "src": "/(.*)",
-      "dest": "/index.html"
-    }
-  ]
+  "version": 2
 }
 ```
 
-**Here's exactly how to add it:**
+That's the entire file. Just those 3 lines.
 
-1. Go to your repo on GitHub
-2. Click "Add file" → "Create new file"
-3. Name it exactly `vercel.json`
-4. Paste the code above into the editor
-5. Scroll down and click "Commit changes"
-
-Vercel will detect the new file and automatically redeploy within 30 seconds. Click your Vercel URL again and it will open as a real webpage.
+Commit the change and Vercel will redeploy automatically.
 
 ---
 
-## Why this happened
+## If that still fails — try this instead
 
-When you deploy a raw HTML file without a config, Vercel doesn't know if you want it served as a website or downloaded as a file. The `vercel.json` file tells it explicitly — serve everything as a static site, route all traffic to `index.html`.
+Delete `vercel.json` completely and do this instead:
+
+1. In your GitHub repo click "Add file" → "Create new file"
+2. Name it exactly `.vercelignore` — yes with a dot at the start, nothing before it
+3. Leave it completely blank
+4. Commit it
+
+Then go to Vercel → your project → "Settings" → "General" → scroll to "Output Directory" → type `.` (just a single dot) → Save → go to "Deployments" → click the three dots on your latest deployment → "Redeploy"
 
 ---
 
-Your repo should now look like this:
+## The cleanest fix — restructure your repo
+
+The most reliable setup for a plain HTML site on Vercel is:
 ```
 thejordanedit/
-├── index.html
-└── vercel.json
+├── index.html        ← your website file
+└── vercel.json       ← just { "version": 2 }
