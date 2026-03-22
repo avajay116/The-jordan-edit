@@ -1,0 +1,40 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "index.html",
+      "use": "@vercel/static"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "/index.html"
+    }
+  ]
+}
+```
+
+**Here's exactly how to add it:**
+
+1. Go to your repo on GitHub
+2. Click "Add file" → "Create new file"
+3. Name it exactly `vercel.json`
+4. Paste the code above into the editor
+5. Scroll down and click "Commit changes"
+
+Vercel will detect the new file and automatically redeploy within 30 seconds. Click your Vercel URL again and it will open as a real webpage.
+
+---
+
+## Why this happened
+
+When you deploy a raw HTML file without a config, Vercel doesn't know if you want it served as a website or downloaded as a file. The `vercel.json` file tells it explicitly — serve everything as a static site, route all traffic to `index.html`.
+
+---
+
+Your repo should now look like this:
+```
+thejordanedit/
+├── index.html
+└── vercel.json
